@@ -8,6 +8,8 @@ sudo: false
 before_install:
   - mv /home/travis/gopath/src/github.com/repenno/ /home/travis/gopath/src/github.com/cisco-ie/
 
+install: true
+
 go:
   - 1.11.x
   - 1.12.x
@@ -17,5 +19,5 @@ env:
   - TEST_SUITE=unit_tests
 
 script:
-  - if [ "$TEST_SUITE" = "unit_tests" ]; then make; fi
+  - if [ "$TEST_SUITE" = "unit_tests" ]; then make test; fi
   - if [ "$TEST_SUITE" = "integration_tests" ]; then make integration-test; fi
