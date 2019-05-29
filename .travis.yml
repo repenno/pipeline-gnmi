@@ -13,9 +13,9 @@ go:
   - 1.12.x
 
 env:
-  - TO_BUILD=UNIT
-  - TO_BUILD=INTEGRATION
+  - TEST_SUITE=integration_tests
+  - TEST_SUITE=unit_tests
 
 script:
-  - if [ "$TO_BUILD" = "UNIT" ]; then make; fi
-  - if [ "$TO_BUILD" = "DOCKER" ]; then make integration-test; fi
+  - if [ "$TEST_SUITE" = "unit_tests" ]; then make; fi
+  - if [ "$TEST_SUITE" = "integration_tests" ]; then make integration-test; fi
