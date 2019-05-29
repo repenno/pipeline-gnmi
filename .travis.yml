@@ -1,10 +1,21 @@
 language: go
+
+services:
+  - docker
+
 sudo: false
+
 before_install:
   - mv /home/travis/gopath/src/github.com/repenno/ /home/travis/gopath/src/github.com/cisco-ie/
-install: true
-script:
-  - make
+
 go:
   - 1.11.x
   - 1.12.x
+
+env:
+  - TO_BUILD=UNIT
+  - TO_BUILD=INTEGRATION
+
+script:
+  - if [ "$TO_BUILD" = "UNIT" ]; then make; fi
+  - if [ "$TO_BUILD" = "DOCKER" ]; then make integration-test; fi
